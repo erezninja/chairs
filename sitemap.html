@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap - FlexiSeats Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ecf0f1;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: #f39c12;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb-nav {
+            color: #6c757d;
+        }
+
+        .breadcrumb-nav a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: white;
+            padding: 3rem 0;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Sitemap Content */
+        .sitemap-content {
+            padding: 3rem 0;
+            background: white;
+        }
+
+        .sitemap-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3498db;
+            display: inline-block;
+        }
+
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .sitemap-category {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-icon {
+            font-size: 1.5rem;
+        }
+
+        .sitemap-links {
+            list-style: none;
+        }
+
+        .sitemap-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .sitemap-links a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .sitemap-links a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        .page-description {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            padding-left: 1.5rem;
+        }
+
+        /* Stats Section */
+        .sitemap-stats {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #f39c12;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* XML Sitemap Section */
+        .xml-sitemap {
+            background: #f8f9fa;
+            padding: 3rem 0;
+        }
+
+        .xml-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .xml-icon {
+            font-size: 3rem;
+            color: #f39c12;
+            margin-bottom: 1rem;
+        }
+
+        .xml-link {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .xml-link:hover {
+            background: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #f39c12;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #f39c12;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .sitemap-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">FlexiSeats Pro</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a> / Sitemap
+            </div>
+        </div>
+    </section>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Website Sitemap</h1>
+            <p class="page-subtitle">Complete navigation guide to all pages on FlexiSeats Pro website</p>
+        </div>
+    </section>
+
+    <section class="sitemap-content">
+        <div class="container">
+            <div class="sitemap-grid">
+                <!-- Main Pages -->
+                <div class="sitemap-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">🏠</span>
+                        Main Pages
+                    </h3>
+                    <ul class="sitemap-links">
+                        <li>
+                            <a href="index.html">🏠 Homepage</a>
+                            <div class="page-description">Company overview, featured products, and key information</div>
+                        </li>
+                        <li>
+                            <a href="catalog.html">📋 Product Catalog</a>
+                            <div class="page-description">Browse all 8 chair models with filtering and sorting</div>
+                        </li>
+                        <li>
+                            <a href="about.html">👥 About Us</a>
+                            <div class="page-description">Company story, team, manufacturing, and contact details</div>
+                        </li>
+                        <li>
+                            <a href="faq.html">❓ FAQ</a>
+                            <div class="page-description">Frequently asked questions and return policy</div>
+                        </li>
+                        <li>
+                            <a href="contact.html">📞 Contact</a>
+                            <div class="page-description">Multiple contact methods, forms, and location information</div>
+                        </li>
+                        <li>
+                            <a href="sitemap.html">🗺️ Sitemap</a>
+                            <div class="page-description">Complete website navigation guide (current page)</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Outdoor Chairs -->
+                <div class="sitemap-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">🌞</span>
+                        Outdoor Chairs
+                    </h3>
+                    <ul class="sitemap-links">
+                        <li>
+                            <a href="product-aquastack.html">🪑 AquaStack Outdoor</a>
+                            <div class="page-description">$45 - Weather-resistant dining chair for restaurants</div>
+                        </li>
+                        <li>
+                            <a href="product-ecocomfort.html">🛋️ EcoComfort Patio</a>
+                            <div class="page-description">$65 - 100% recycled ergonomic outdoor lounge chair</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Office Chairs -->
+                <div class="sitemap-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">🏢</span>
+                        Office Chairs
+                    </h3>
+                    <ul class="sitemap-links">
+                        <li>
+                            <a href="product-promeet.html">💺 ProMeet Conference</a>
+                            <div class="page-description">$85 - Professional boardroom and meeting room seating</div>
+                        </li>
+                        <li>
+                            <a href="product-flexiwork.html">🪑 FlexiWork Task</a>
+                            <div class="page-description">$95 - Adjustable ergonomic chair for daily office use</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Event Chairs -->
+                <div class="sitemap-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">🎪</span>
+                        Event Chairs
+                    </h3>
+                    <ul class="sitemap-links">
+                        <li>
+                            <a href="product-eventstack-basic.html">🪑 EventStack Basic</a>
+                            <div class="page-description">$35 - Budget-friendly stackable chairs for large events</div>
+                        </li>
+                        <li>
+                            <a href="product-eventstack-premium.html">💺 EventStack Premium</a>
+                            <div class="page-description">$55 - Heavy-duty premium event and banquet seating</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Lounge Chairs -->
+                <div class="sitemap-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">🛋️</span>
+                        Lounge Chairs
+                    </h3>
+                    <ul class="sitemap-links">
+                        <li>
+                            <a href="product-cafecomfort.html">🛋️ CafeComfort Lounge</a>
+                            <div class="page-description">$75 - Versatile indoor/outdoor cafe and lounge seating</div>
+                        </li>
+                        <li>
+                            <a href="product-moderncurve.html">🪑 ModernCurve Accent</a>
+                            <div class="page-description">$125 - Designer residential chair with contemporary styling</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="sitemap-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">⚡</span>
+                        Quick Actions
+                    </h3>
+                    <ul class="sitemap-links">
+                        <li>
+                            <a href="catalog.html?category=outdoor">🌞 Browse Outdoor Chairs</a>
+                            <div class="page-description">Filter catalog to show only outdoor dining chairs</div>
+                        </li>
+                        <li>
+                            <a href="catalog.html?category=office">🏢 Browse Office Chairs</a>
+                            <div class="page-description">Filter catalog to show only office and conference chairs</div>
+                        </li>
+                        <li>
+                            <a href="catalog.html?category=event">🎪 Browse Event Chairs</a>
+                            <div class="page-description">Filter catalog to show only stackable event chairs</div>
+                        </li>
+                        <li>
+                            <a href="catalog.html?category=lounge">🛋️ Browse Lounge Chairs</a>
+                            <div class="page-description">Filter catalog to show only casual and lounge chairs</div>
+                        </li>
+                        <li>
+                            <a href="contact.html#inquiry">📝 Request Quote</a>
+                            <div class="page-description">Jump directly to contact form for pricing inquiries</div>
+                        </li>
+                        <li>
+                            <a href="tel:+15551232447">📞 Call Now</a>
+                            <div class="page-description">Direct phone link: (555) 123-CHAIR</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sitemap-stats">
+        <div class="container">
+            <h2 class="section-title" style="color: white; text-align: center;">Website Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">14</span>
+                    <div class="stat-label">Total Pages</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">8</span>
+                    <div class="stat-label">Product Pages</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <div class="stat-label">Product Categories</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <div class="stat-label">Main Sections</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="xml-sitemap">
+        <div class="container">
+            <div class="xml-box">
+                <div class="xml-icon">🗂️</div>
+                <h3>XML Sitemap for Search Engines</h3>
+                <p>Help search engines index your website more effectively with a machine-readable sitemap.</p>
+                <a href="sitemap.xml" class="xml-link">Download XML Sitemap</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="catalog.html">Product Catalog</a>
+                    <a href="about.html">About Us</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Products</h3>
+                    <a href="product-aquastack.html">AquaStack Outdoor</a>
+                    <a href="product-ecocomfort.html">EcoComfort Patio</a>
+                    <a href="product-promeet.html">ProMeet Conference</a>
+                    <a href="product-flexiwork.html">FlexiWork Task</a>
+                    <a href="product-eventstack-basic.html">EventStack Basic</a>
+                    <a href="product-eventstack-premium.html">EventStack Premium</a>
+                    <a href="product-cafecomfort.html">CafeComfort Lounge</a>
+                    <a href="product-moderncurve.html">ModernCurve Accent</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="faq.html">FAQ</a>
+                    <a href="faq.html#warranty">Warranty</a>
+                    <a href="faq.html#returns">Returns</a>
+                    <a href="faq.html#shipping">Shipping</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 1247 Industrial Blvd<br>Springfield, IL 62701</p>
+                    <p>📞 (555) 123-CHAIR</p>
+                    <p>✉️ info@flexiseatspro.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FlexiSeats Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
