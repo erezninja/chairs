@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FlexiSeats Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ecf0f1;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255,255,255,0.1);
+            color: #f39c12;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb-nav {
+            color: #6c757d;
+        }
+
+        .breadcrumb-nav a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .content-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .section-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .two-column img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .value-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-photo {
+            height: 200px;
+            background: linear-gradient(45deg, #ecf0f1, #bdc3c7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #7f8c8d;
+        }
+
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-title {
+            color: #f39c12;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #2c3e50;
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: #f39c12;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 1rem;
+            color: #f39c12;
+        }
+
+        .contact-details {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-details a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-details a:hover {
+            color: #f39c12;
+        }
+
+        /* Certifications */
+        .certifications {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .certification {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* Map Placeholder */
+        .map-container {
+            height: 300px;
+            background: linear-gradient(45deg, #bdc3c7, #95a5a6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">FlexiSeats Pro</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="about.html" class="active">About Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a> / About Us
+            </div>
+        </div>
+    </section>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">About FlexiSeats Pro</h1>
+            <p class="page-subtitle">Leading manufacturer of premium plastic chairs since 2015. Quality, innovation, and sustainability in every seat.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="two-column">
+                <div>
+                    <h2 class="section-title">Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Quality First</h3>
+                    <p>Every chair undergoes rigorous testing to ensure it meets our high standards for durability, comfort, and safety.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌱</div>
+                    <h3>Sustainability</h3>
+                    <p>We use recycled materials and eco-friendly manufacturing processes to minimize our environmental impact.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h3>Innovation</h3>
+                    <p>Continuous research and development drives us to create better, more efficient, and more comfortable seating solutions.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Customer Focus</h3>
+                    <p>We build lasting relationships by understanding our customers' needs and delivering solutions that exceed expectations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="two-column">
+                <div style="height: 300px; background: linear-gradient(45deg, #ecf0f1, #bdc3c7); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #7f8c8d;">⚙️</div>
+                <div>
+                    <h2 class="section-title">Manufacturing Excellence</h2>
+                    <div class="section-content">
+                        <p>Our advanced manufacturing facility utilizes state-of-the-art injection molding technology and automated quality control systems. We've invested heavily in precision equipment that ensures consistent quality across every product line.</p>
+                        <p>Our proprietary plastic compound formula includes UV stabilizers and impact modifiers that provide superior durability and weather resistance. Each chair is designed using computer-aided engineering to optimize strength-to-weight ratios and ergonomic comfort.</p>
+                        <p>We maintain strict quality control protocols, with every batch tested for load capacity, UV resistance, and dimensional accuracy. Our ISO 9001 certified processes ensure consistent quality that meets international standards.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Environmental Responsibility</h2>
+            <div class="section-content">
+                <p>At FlexiSeats Pro, we believe that quality furniture shouldn't come at the expense of our planet. Our commitment to environmental responsibility is woven into every aspect of our operations:</p>
+                <ul style="margin: 2rem 0; padding-left: 2rem;">
+                    <li><strong>Recycled Materials:</strong> 75% of our plastic content comes from post-consumer recycled materials</li>
+                    <li><strong>Energy Efficiency:</strong> Our facility runs on 60% renewable energy from solar panels installed in 2022</li>
+                    <li><strong>Waste Reduction:</strong> 98% of our manufacturing waste is recycled back into production</li>
+                    <li><strong>Sustainable Packaging:</strong> All packaging materials are recyclable or biodegradable</li>
+                    <li><strong>Carbon Neutral Shipping:</strong> We offset 100% of shipping emissions through verified carbon credit programs</li>
+                </ul>
+                <p>We're proud to be certified as a B Corporation, meeting the highest standards of verified social and environmental performance, public transparency, and legal accountability.</p>
+            </div>
+
+            <div class="certifications">
+                <div class="certification">
+                    <div class="cert-icon">🌟</div>
+                    <div class="cert-name">ISO 9001 Certified</div>
+                </div>
+                <div class="certification">
+                    <div class="cert-icon">🌍</div>
+                    <div class="cert-name">B Corporation</div>
+                </div>
+                <div class="certification">
+                    <div class="cert-icon">♻️</div>
+                    <div class="cert-name">EPA Green Partner</div>
+                </div>
+                <div class="certification">
+                    <div class="cert-icon">✅</div>
+                    <div class="cert-name">GREENGUARD Certified</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">👨‍💼</div>
+                    <div class="member-info">
+                        <div class="member-name">Michael Chen</div>
+                        <div class="member-title">Co-Founder & CEO</div>
+                        <p class="member-bio">With 20 years in manufacturing and a background in materials engineering, Michael leads our innovation initiatives and oversees strategic planning. He holds an MBA from Northwestern Kellogg.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">👩‍💼</div>
+                    <div class="member-info">
+                        <div class="member-name">Sarah Rodriguez</div>
+                        <div class="member-title">Co-Founder & COO</div>
+                        <p class="member-bio">Sarah brings 18 years of operations excellence and supply chain expertise. She champions our sustainability initiatives and manages our day-to-day operations with unwavering attention to quality.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">👨‍🔬</div>
+                    <div class="member-info">
+                        <div class="member-name">Dr. James Patterson</div>
+                        <div class="member-title">Head of R&D</div>
+                        <p class="member-bio">A materials scientist with a PhD from MIT, James leads our research team in developing new plastic compounds and ergonomic designs that push the boundaries of chair performance.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">👩‍💻</div>
+                    <div class="member-info">
+                        <div class="member-name">Lisa Thompson</div>
+                        <div class="member-title">Customer Success Director</div>
+                        <p class="member-bio">Lisa ensures every customer receives exceptional service from initial inquiry through post-purchase support. Her team maintains our industry-leading 98% customer satisfaction rating.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Visit Our Facility</h3>
+                    <div class="contact-details">
+                        <strong>FlexiSeats Pro Manufacturing</strong><br>
+                        1247 Industrial Boulevard<br>
+                        Manufacturing District<br>
+                        Springfield, IL 62701<br><br>
+                        <em>Factory tours available by appointment</em>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>Call Us</h3>
+                    <div class="contact-details">
+                        <strong>Main:</strong> <a href="tel:+15551232447">(555) 123-CHAIR (2447)</a><br>
+                        <strong>Sales:</strong> <a href="tel:+15551232448">(555) 123-2448</a><br>
+                        <strong>Emergency:</strong> <a href="tel:+15551232449">(555) 123-2449</a><br><br>
+                        <strong>Business Hours:</strong><br>
+                        Monday - Friday: 8:00 AM - 6:00 PM CST<br>
+                        Saturday: 9:00 AM - 2:00 PM CST<br>
+                        Sunday: Closed
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email Us</h3>
+                    <div class="contact-details">
+                        <strong>General Inquiries:</strong><br>
+                        <a href="mailto:info@flexiseatspro.com">info@flexiseatspro.com</a><br><br>
+                        <strong>Sales & Quotes:</strong><br>
+                        <a href="mailto:sales@flexiseatspro.com">sales@flexiseatspro.com</a><br><br>
+                        <strong>Customer Support:</strong><br>
+                        <a href="mailto:support@flexiseatspro.com">support@flexiseatspro.com</a><br><br>
+                        <strong>Partnership Opportunities:</strong><br>
+                        <a href="mailto:partnerships@flexiseatspro.com">partnerships@flexiseatspro.com</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🌐</div>
+                    <h3>Online</h3>
+                    <div class="contact-details">
+                        <strong>Website:</strong><br>
+                        <a href="https://www.flexiseatspro.com">www.flexiseatspro.com</a><br><br>
+                        <strong>Follow Us:</strong><br>
+                        LinkedIn: @FlexiSeatsPro<br>
+                        Instagram: @FlexiSeatsProChairs<br>
+                        Facebook: FlexiSeats Pro<br><br>
+                        <strong>Live Chat:</strong><br>
+                        Available 9 AM - 5 PM CST
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                🗺️ Interactive Map - 1247 Industrial Boulevard, Springfield, IL 62701
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #1a252f; color: white; padding: 3rem 0 1rem; margin-top: 0;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="margin-bottom: 1rem; color: #f39c12;">Quick Links</h3>
+                    <a href="index.html" style="color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 0.5rem;">Home</a>
+                    <a href="catalog.html" style="color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 0.5rem;">Product Catalog</a>
+                    <a href="about.html" style="color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 0.5rem;">About Us</a>
+                    <a href="faq.html" style="color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 0.5rem;">FAQ</a>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 1rem; color: #f39c12;">Products</h3>
+                    <a href="#outdoor" style="color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 0.5rem;">Outdoor Chairs</a>
+                    <a href="#office" style="color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 0.5rem;">Office Chairs</a>
+                    <a href="#event" style="color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 0.5rem;">Event Chairs</a>
+                    <a href="#lounge" style="color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 0.5rem;">Lounge Chairs</a>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 1rem; color: #f39c12;">Support</h3>
+                    <a href="faq.html" style="color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 0.5rem;">FAQ</a>
+                    <a href="#warranty" style="color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 0.5rem;">Warranty</a>
+                    <a href="#returns" style="color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 0.5rem;">Returns</a>
+                    <a href="#shipping" style="color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 0.5rem;">Shipping</a>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 1rem; color: #f39c12;">Contact Info</h3>
+                    <p>📍 1247 Industrial Blvd<br>Springfield, IL 62701</p>
+                    <p>📞 (555) 123-CHAIR</p>
+                    <p>✉️ info@flexiseatspro.com</p>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #34495e; color: #bdc3c7;">
+                <p>&copy; 2025 FlexiSeats Pro. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.value-card, .team-member, .contact-card, .certification').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>title">Our Story</h2>
+                    <div class="section-content">
+                        <p>Founded in 2015 by industry veterans Michael Chen and Sarah Rodriguez, FlexiSeats Pro emerged from a simple vision: to create plastic chairs that combine durability, comfort, and environmental responsibility without compromising on style.</p>
+                        <p>Starting in a modest 10,000 square foot facility in Springfield, Illinois, we've grown to become a trusted partner for restaurants, offices, event venues, and homes across the United States. Our commitment to quality and innovation has driven us to develop proprietary manufacturing processes that set new standards in the plastic furniture industry.</p>
+                        <p>Today, we operate from our state-of-the-art 85,000 square foot manufacturing facility, producing over 500,000 chairs annually while maintaining our commitment to sustainable practices and exceptional customer service.</p>
+                    </div>
+                </div>
+                <div>
+                    <div style="height: 300px; background: linear-gradient(45deg, #ecf0f1, #bdc3c7); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #7f8c8d;">🏭</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-

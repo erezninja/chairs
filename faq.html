@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - FlexiSeats Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ecf0f1;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255,255,255,0.1);
+            color: #f39c12;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb-nav {
+            color: #6c757d;
+        }
+
+        .breadcrumb-nav a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: white;
+            padding: 3rem 0;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Search Box */
+        .search-section {
+            background: white;
+            padding: 2rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #3498db;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+
+        /* FAQ Categories */
+        .categories-section {
+            background: white;
+            padding: 2rem 0;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .category-tab {
+            padding: 0.8rem 1.5rem;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #6c757d;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-tab:hover, .category-tab.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        /* FAQ Content */
+        .faq-content {
+            padding: 3rem 0;
+        }
+
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #f39c12;
+            display: inline-block;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: white;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+
+        .faq-question.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .faq-answer ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        /* Return Policy Special Section */
+        .return-policy-highlight {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 3rem 0;
+            margin: 2rem 0;
+            border-radius: 15px;
+        }
+
+        .return-policy-content {
+            text-align: center;
+        }
+
+        .return-policy-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .return-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .return-step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #f39c12;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: #f39c12;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .contact-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #f39c12;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #2c3e50;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #f39c12;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #f39c12;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .category-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .return-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">FlexiSeats Pro</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html" class="active">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a> / Frequently Asked Questions
+            </div>
+        </div>
+    </section>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Frequently Asked Questions</h1>
+            <p class="page-subtitle">Find answers to common questions about our products, ordering, shipping, and policies.</p>
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search for answers..." id="searchInput">
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories-section">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">All Questions</button>
+                <button class="category-tab" data-category="products">Products</button>
+                <button class="category-tab" data-category="ordering">Ordering & Shipping</button>
+                <button class="category-tab" data-category="returns">Returns & Warranty</button>
+                <button class="category-tab" data-category="payment">Payment & Pricing</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-content">
+        <div class="container">
+            <!-- Product Information -->
+            <div class="faq-category" data-category="products">
+                <h2 class="category-title">Product Information</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What materials are used in your chairs?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our chairs are made from high-grade polypropylene plastic with specialized additives for enhanced durability and weather resistance. Key material features include:</p>
+                        <ul>
+                            <li>75% post-consumer recycled plastic content</li>
+                            <li>UV stabilizers to prevent fading and cracking</li>
+                            <li>Impact modifiers for superior strength</li>
+                            <li>Antimicrobial additives for hygiene</li>
+                            <li>Colorfast pigments that won't fade</li>
+                        </ul>
+                        <p>All materials are certified safe and meet international quality standards.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Are your chairs suitable for outdoor use?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Most of our chairs are designed for both indoor and outdoor use. Our outdoor-rated models feature:</p>
+                        <ul>
+                            <li>UV-resistant materials that won't fade in sunlight</li>
+                            <li>Weather-resistant construction</li>
+                            <li>Drainage holes to prevent water accumulation</li>
+                            <li>Temperature resistance from -20°F to 140°F</li>
+                            <li>Salt air and humidity resistance</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <strong>Recommended for outdoor use:</strong> AquaStack Outdoor, EcoComfort Patio, EventStack series, and CafeComfort Lounge chairs.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What weight capacity do your chairs support?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Weight capacities vary by model:</p>
+                        <ul>
+                            <li><strong>EventStack Basic:</strong> 250 lbs</li>
+                            <li><strong>AquaStack Outdoor:</strong> 300 lbs</li>
+                            <li><strong>EventStack Premium:</strong> 350 lbs</li>
+                            <li><strong>ProMeet Conference:</strong> 350 lbs</li>
+                            <li><strong>FlexiWork Task:</strong> 300 lbs</li>
+                            <li><strong>EcoComfort Patio:</strong> 325 lbs</li>
+                            <li><strong>CafeComfort Lounge:</strong> 275 lbs</li>
+                            <li><strong>ModernCurve Accent:</strong> 250 lbs</li>
+                        </ul>
+                        <p>All chairs are tested to 150% of their rated capacity for safety.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How do I choose the right chair for my needs?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Consider these factors when selecting chairs:</p>
+                        <ul>
+                            <li><strong>Use Environment:</strong> Indoor, outdoor, or both</li>
+                            <li><strong>Frequency of Use:</strong> Daily, occasional, or event-based</li>
+                            <li><strong>Storage Needs:</strong> Stackable options save space</li>
+                            <li><strong>Comfort Level:</strong> Basic seating vs. ergonomic support</li>
+                            <li><strong>Style Preference:</strong> Professional, casual, or designer</li>
+                        </ul>
+                        <p>Our sales team can help you choose the perfect chairs for your specific needs. Contact us at <a href="mailto:sales@flexiseatspro.com">sales@flexiseatspro.com</a> or call (555) 123-2448.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do you offer custom colors?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We offer custom color matching for orders of 100+ chairs. Standard colors include:</p>
+                        <ul>
+                            <li>Classic White</li>
+                            <li>Charcoal Gray</li>
+                            <li>Navy Blue</li>
+                            <li>Forest Green</li>
+                            <li>Burgundy Red</li>
+                            <li>Sunset Orange</li>
+                        </ul>
+                        <div class="warning-box">
+                            <strong>Note:</strong> Custom colors require a 4-6 week lead time and minimum order quantities. Additional charges may apply.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ordering & Shipping -->
+            <div class="faq-category" data-category="ordering">
+                <h2 class="category-title">Ordering & Shipping</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How do I place an order?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can place orders through several methods:</p>
+                        <ul>
+                            <li><strong>Online:</strong> Browse our catalog and request a quote</li>
+                            <li><strong>Phone:</strong> Call (555) 123-2448 to speak with sales</li>
+                            <li><strong>Email:</strong> Send requirements to sales@flexiseatspro.com</li>
+                            <li><strong>In-Person:</strong> Visit our showroom by appointment</li>
+                        </ul>
+                        <p>For bulk orders (50+ chairs), we'll provide a detailed quote including volume discounts and shipping costs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What are your minimum order quantities?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Minimum order quantities vary by product and customer type:</p>
+                        <ul>
+                            <li><strong>Retail customers:</strong> 1 chair minimum</li>
+                            <li><strong>Commercial customers:</strong> 10 chairs minimum</li>
+                            <li><strong>Bulk pricing:</strong> Starts at 50 chairs</li>
+                            <li><strong>Custom colors:</strong> 100 chairs minimum</li>
+                        </ul>
+                        <p>Volume discounts available for quantities over 25 chairs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What are shipping costs and timeframes?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Shipping Timeframes:</strong></p>
+                        <ul>
+                            <li>Standard orders: 5-7 business days</li>
+                            <li>Large orders (100+ chairs): 10-14 business days</li>
+                            <li>Custom colors: 4-6 weeks</li>
+                            <li>Rush orders: 2-3 business days (additional fees apply)</li>
+                        </ul>
+                        <p><strong>Shipping Costs:</strong></p>
+                        <ul>
+                            <li>Orders under $500: $75 flat rate</li>
+                            <li>Orders $500-$2000: $125 flat rate</li>
+                            <li>Orders over $2000: Free shipping</li>
+                            <li>Alaska/Hawaii: Additional $200</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <strong>Free White Glove Delivery</strong> available for orders over $5,000 within 100 miles of our facility.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do you ship internationally?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, we ship to Canada and Mexico. International shipping details:</p>
+                        <ul>
+                            <li><strong>Canada:</strong> 7-14 business days, duties/taxes may apply</li>
+                            <li><strong>Mexico:</strong> 10-21 business days, customs clearance required</li>
+                            <li>Minimum order: 25 chairs for international shipping</li>
+                            <li>Customer responsible for customs duties and taxes</li>
+                        </ul>
+                        <p>For other international destinations, please contact our export team at <a href="mailto:international@flexiseatspro.com">international@flexiseatspro.com</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can I track my order?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! Once your order ships, you'll receive:</p>
+                        <ul>
+                            <li>Email confirmation with tracking number</li>
+                            <li>SMS updates (if phone number provided)</li>
+                            <li>Estimated delivery date</li>
+                            <li>Delivery appointment scheduling for large orders</li>
+                        </ul>
+                        <p>You can also check your order status anytime by calling our customer service at (555) 123-CHAIR.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Returns & Warranty -->
+            <div class="faq-category" data-category="returns">
+                <h2 class="category-title">Returns & Warranty</h2>
+                
+                <div class="return-policy-highlight">
+                    <div class="container">
+                        <div class="return-policy-content">
+                            <h2 class="return-policy-title">30-Day Return Policy</h2>
+                            <p style="font-size: 1.2rem; margin-bottom: 2rem;">We stand behind our products with a comprehensive return policy designed to ensure your complete satisfaction.</p>
+                            
+                            <div class="return-steps">
+                                <div class="return-step">
+                                    <div class="step-number">1</div>
+                                    <h4>Contact Us</h4>
+                                    <p>Within 30 days of delivery</p>
+                                </div>
+                                <div class="return-step">
+                                    <div class="step-number">2</div>
+                                    <h4>Get Authorization</h4>
+                                    <p>Receive return authorization number</p>
+                                </div>
+                                <div class="return-step">
+                                    <div class="step-number">3</div>
+                                    <h4>Pack & Ship</h4>
+                                    <p>Original packaging required</p>
+                                </div>
+                                <div class="return-step">
+                                    <div class="step-number">4</div>
+                                    <h4>Get Refund</h4>
+                                    <p>5-7 business days after receipt</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What is your detailed return policy?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Return Window:</strong> 30 calendar days from delivery date</p>
+                        
+                        <p><strong>Condition Requirements:</strong></p>
+                        <ul>
+                            <li>Products must be in original, unused condition</li>
+                            <li>Original packaging and all accessories included</li>
+                            <li>No damage beyond normal inspection</li>
+                            <li>Return authorization number required</li>
+                        </ul>
+
+                        <p><strong>Restocking Fee:</strong></p>
+                        <ul>
+                            <li>Standard returns: 15% restocking fee</li>
+                            <li>Custom colored items: Non-returnable (unless defective)</li>
+                            <li>Defective items: No restocking fee</li>
+                            <li>Special orders: Non-returnable (unless defective)</li>
+                        </ul>
+
+                        <p><strong>Return Shipping:</strong></p>
+                        <ul>
+                            <li>Customer pays return shipping costs</li>
+                            <li>Exception: Defective or incorrectly shipped items</li>
+                            <li>We recommend insured shipping for protection</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <strong>Important:</strong> Returns without prior authorization will be refused. Always contact us first at support@flexiseatspro.com or (555) 123-CHAIR.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How do I initiate a return?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Step-by-step process:</strong></p>
+                        <ol>
+                            <li><strong>Contact our support team within 30 days</strong>
+                                <ul>
+                                    <li>Email: support@flexiseatspro.com</li>
+                                    <li>Phone: (555) 123-CHAIR</li>
+                                    <li>Include order number and reason for return</li>
+                                </ul>
+                            </li>
+                            <li><strong>Receive return authorization</strong>
+                                <ul>
+                                    <li>Return authorization (RA) number provided</li>
+                                    <li>Return shipping instructions included</li>
+                                    <li>Pre-paid return label (for defective items only)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Package and ship items</strong>
+                                <ul>
+                                    <li>Use original packaging when possible</li>
+                                    <li>Include RA number on outside of package</li>
+                                    <li>Ship to our returns facility (address provided)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Receive confirmation and refund</strong>
+                                <ul>
+                                    <li>Email confirmation when we receive your return</li>
+                                    <li>Inspection completed within 2 business days</li>
+                                    <li>Refund processed 5-7 business days after approval</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What warranty coverage do you provide?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Standard Warranty: 2 Years Manufacturing Defects</strong></p>
+                        
+                        <p><strong>What's Covered:</strong></p>
+                        <ul>
+                            <li>Manufacturing defects in materials or workmanship</li>
+                            <li>Structural failure under normal use</li>
+                            <li>Premature cracking or breaking</li>
+                            <li>Color fading beyond normal wear (outdoor models)</li>
+                        </ul>
+
+                        <p><strong>What's NOT Covered:</strong></p>
+                        <ul>
+                            <li>Normal wear and tear</li>
+                            <li>Damage from misuse or abuse</li>
+                            <li>Damage from extreme weather events</li>
+                            <li>Scratches, scuffs, or minor surface damage</li>
+                            <li>Damage from commercial cleaning chemicals</li>
+                        </ul>
+
+                        <p><strong>Warranty Claims:</strong></p>
+                        <ul>
+                            <li>Contact support with photos of the issue</li>
+                            <li>Proof of purchase required</li>
+                            <li>Replacement or repair at our discretion</li>
+                            <li>We cover shipping for warranty replacements</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can I exchange items instead of returning?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We offer exchanges within 30 days of delivery:</p>
+                        <ul>
+                            <li><strong>Same model, different color:</strong> No additional fees</li>
+                            <li><strong>Different model, same price:</strong> 10% restocking fee</li>
+                            <li><strong>Higher-priced model:</strong> Pay the difference + 10% fee</li>
+                            <li><strong>Lower-priced model:</strong> Refund difference minus 15% fee</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <strong>Defective Item Exchange:</strong> Immediate replacement with no fees for manufacturing defects.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment & Pricing -->
+            <div class="faq-category" data-category="payment">
+                <h2 class="category-title">Payment & Pricing</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What payment methods do you accept?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Individual Customers:</strong></p>
+                        <ul>
+                            <li>All major credit cards (Visa, MasterCard, American Express, Discover)</li>
+                            <li>PayPal</li>
+                            <li>Bank transfers for orders over $1,000</li>
+                        </ul>
+
+                        <p><strong>Commercial Customers:</strong></p>
+                        <ul>
+                            <li>All payment methods above</li>
+                            <li>Net 30 terms (approved accounts)</li>
+                            <li>Purchase orders accepted</li>
+                            <li>ACH transfers</li>
+                            <li>Financing options available</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do you offer bulk pricing?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Volume discounts available:</p>
+                        <ul>
+                            <li><strong>25-49 chairs:</strong> 5% discount</li>
+                            <li><strong>50-99 chairs:</strong> 10% discount</li>
+                            <li><strong>100-249 chairs:</strong> 15% discount</li>
+                            <li><strong>250-499 chairs:</strong> 20% discount</li>
+                            <li><strong>500+ chairs:</strong> 25% discount + custom pricing</li>
+                        </ul>
+                        <p>Additional discounts may apply for repeat customers and annual contracts.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What are the terms for commercial customers?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Credit Application Required for:</strong></p>
+                        <ul>
+                            <li>Net 30 payment terms</li>
+                            <li>Purchase order processing</li>
+                            <li>Extended payment plans</li>
+                        </ul>
+
+                        <p><strong>Application Requirements:</strong></p>
+                        <ul>
+                            <li>Business license or tax ID</li>
+                            <li>Trade references (3 minimum)</li>
+                            <li>Bank reference</li>
+                            <li>Financial statements (for large credit lines)</li>
+                        </ul>
+
+                        <p><strong>Benefits of Approved Accounts:</strong></p>
+                        <ul>
+                            <li>Net 30 payment terms</li>
+                            <li>Dedicated account manager</li>
+                            <li>Priority order processing</li>
+                            <li>Special pricing on volume orders</li>
+                            <li>Extended warranty options</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-cta">
+        <div class="container">
+            <h3>Still Have Questions?</h3>
+            <p>Our customer service team is here to help you find the perfect seating solution.</p>
+            <div class="contact-buttons">
+                <a href="tel:+15551232447" class="btn">Call (555) 123-CHAIR</a>
+                <a href="mailto:support@flexiseatspro.com" class="btn">Email Support</a>
+                <a href="about.html#contact" class="btn">Visit Our Facility</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="catalog.html">Product Catalog</a>
+                    <a href="about.html">About Us</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Products</h3>
+                    <a href="#outdoor">Outdoor Chairs</a>
+                    <a href="#office">Office Chairs</a>
+                    <a href="#event">Event Chairs</a>
+                    <a href="#lounge">Lounge Chairs</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="faq.html">FAQ</a>
+                    <a href="#warranty">Warranty</a>
+                    <a href="#returns">Returns</a>
+                    <a href="#shipping">Shipping</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 1247 Industrial Blvd<br>Springfield, IL 62701</p>
+                    <p>📞 (555) 123-CHAIR</p>
+                    <p>✉️ info@flexiseatspro.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FlexiSeats Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Category filtering
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const category = tab.dataset.category;
+                
+                // Update active tab
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show/hide categories
+                document.querySelectorAll('.faq-category').forEach(cat => {
+                    if (category === 'all' || cat.dataset.category === category) {
+                        cat.style.display = 'block';
+                    } else {
+                        cat.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Show all categories when searching
+            if (searchTerm) {
+                document.querySelectorAll('.faq-category').forEach(cat => {
+                    cat.style.display = 'block';
+                });
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe FAQ items for animation
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
