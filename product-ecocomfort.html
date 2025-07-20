@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoComfort Patio Chair - FlexiSeats Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ecf0f1;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: #f39c12;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb-nav {
+            color: #6c757d;
+        }
+
+        .breadcrumb-nav a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Product Section */
+        .product-section {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Product Gallery */
+        .product-gallery {
+            position: sticky;
+            top: 100px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+            margin-bottom: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .thumbnail {
+            height: 80px;
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            border-color: #3498db;
+            transform: scale(1.05);
+        }
+
+        /* Product Info */
+        .product-info {
+            padding: 1rem 0;
+        }
+
+        .product-category-badge {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-model {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .price-note {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .product-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .key-features {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .key-features h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #27ae60;
+            font-weight: 500;
+        }
+
+        .feature-icon {
+            font-size: 1.2rem;
+        }
+
+        .eco-highlight {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .eco-highlight h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #219a52;
+            transform: translateY(-2px);
+        }
+
+        /* Specifications */
+        .specifications {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .specs-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .specs-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .specs-table th {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .specs-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .specs-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        /* Use Cases */
+        .use-cases {
+            background: #f8f9fa;
+            padding: 3rem 0;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .use-case-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .use-case-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        /* Care Instructions */
+        .care-instructions {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .care-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .care-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .care-item h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        /* Related Products */
+        .related-products {
+            background: #f8f9fa;
+            padding: 3rem 0;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .related-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .related-image {
+            height: 150px;
+            background: linear-gradient(45deg, #ecf0f1, #bdc3c7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #7f8c8d;
+        }
+
+        .related-info {
+            padding: 1rem;
+        }
+
+        .related-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-price {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        /* Contact Form */
+        .inquiry-form {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            background: #27ae60;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background: #219a52;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #f39c12;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #f39c12;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .product-gallery {
+                position: static;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">FlexiSeats Pro</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a> / <a href="catalog.html">Catalog</a> / <a href="catalog.html?category=outdoor">Outdoor Chairs</a> / EcoComfort Patio Chair
+            </div>
+        </div>
+    </section>
+
+    <section class="product-section">
+        <div class="container">
+            <div class="product-layout">
+                <div class="product-gallery">
+                    <div class="main-image" id="mainImage">🛋️</div>
+                    <div class="thumbnail-gallery">
+                        <div class="thumbnail active" data-image="🛋️">🛋️</div>
+                        <div class="thumbnail" data-image="📐">📐</div>
+                        <div class="thumbnail" data-image="♻️">♻️</div>
+                        <div class="thumbnail" data-image="🌱">🌱</div>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category-badge">Outdoor Dining</span>
+                    <h1 class="product-title">EcoComfort Patio Chair</h1>
+                    <div class="product-model">Model: EC-2024-PT</div>
+                    <div class="product-price">
+                        From $65
+                        <div class="price-note">*Volume discounts available for 25+ chairs</div>
+                    </div>
+
+                    <div class="product-description">
+                        The EcoComfort Patio Chair represents the perfect fusion of environmental responsibility and superior comfort. Crafted from 100% recycled materials, this ergonomically designed chair provides exceptional outdoor lounging experience while supporting sustainable practices. Its contoured design and enhanced lumbar support make it ideal for extended use in cafes, resorts, and residential patios.
+                    </div>
+
+                    <div class="eco-highlight">
+                        <h3>🌍 100% Eco-Friendly</h3>
+                        <p>Made entirely from post-consumer recycled plastic bottles - each chair diverts approximately 150 bottles from landfills!</p>
+                    </div>
+
+                    <div class="key-features">
+                        <h3>Key Features</h3>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">♻️</span>
+                                <span>100% Recycled</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🏥</span>
+                                <span>Ergonomic Design</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🌧️</span>
+                                <span>All-Weather</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">💪</span>
+                                <span>Extra Comfort</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🎨</span>
+                                <span>Stylish Design</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🏆</span>
+                                <span>Award Winning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="#inquiry" class="btn btn-primary">Request Quote</a>
+                        <a href="tel:+15551232448" class="btn btn-secondary">Call Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="specifications">
+        <div class="container">
+            <h2 class="section-title">Technical Specifications</h2>
+            <div class="specs-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Specification</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Overall Dimensions</td>
+                            <td>W: 24" × D: 22" × H: 34"</td>
+                        </tr>
+                        <tr>
+                            <td>Seat Height</td>
+                            <td>18 inches</td>
+                        </tr>
+                        <tr>
+                            <td>Seat Dimensions</td>
+                            <td>W: 19" × D: 18"</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>11.2 lbs</td>
+                        </tr>
+                        <tr>
+                            <td>Weight Capacity</td>
+                            <td>325 lbs (tested to 485 lbs)</td>
+                        </tr>
+                        <tr>
+                            <td>Material</td>
+                            <td>100% post-consumer recycled HDPE with UV protection</td>
+                        </tr>
+                        <tr>
+                            <td>Available Colors</td>
+                            <td>Ocean Blue, Forest Green, Earth Brown, Stone Gray, Natural White</td>
+                        </tr>
+                        <tr>
+                            <td>Stackability</td>
+                            <td>Up to 8 chairs high</td>
+                        </tr>
+                        <tr>
+                            <td>Assembly</td>
+                            <td>Ready to use - no assembly required</td>
+                        </tr>
+                        <tr>
+                            <td>Warranty</td>
+                            <td>3 years manufacturing defects + 5 years environmental durability</td>
+                        </tr>
+                        <tr>
+                            <td>Certifications</td>
+                            <td>GREENGUARD Gold, Cradle to Cradle Bronze, B Corp Certified</td>
+                        </tr>
+                        <tr>
+                            <td>Recycled Content</td>
+                            <td>150 recycled plastic bottles per chair</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="use-cases">
+        <div class="container">
+            <h2 class="section-title">Perfect For</h2>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏨</div>
+                    <h3>Resort Lounges</h3>
+                    <p>Luxury comfort for hotel patios and poolside areas. Ergonomic design perfect for extended relaxation.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">☕</div>
+                    <h3>Eco-Conscious Cafes</h3>
+                    <p>Showcase your sustainability commitment while providing superior customer comfort and style.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏡</div>
+                    <h3>Premium Patios</h3>
+                    <p>Elevate your outdoor living space with chairs that combine environmental responsibility with luxury comfort.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏢</div>
+                    <h3>Corporate Terraces</h3>
+                    <p>Perfect for company outdoor spaces, demonstrating corporate social responsibility and employee care.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🎓</div>
+                    <h3>University Campuses</h3>
+                    <p>Sustainable seating for outdoor study areas and campus gathering spaces that inspire students.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🌳</div>
+                    <h3>Garden Centers</h3>
+                    <p>Eco-friendly seating that aligns with your green mission while providing comfort for customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="care-instructions">
+        <div class="container">
+            <h2 class="section-title">Care & Maintenance</h2>
+            <div class="care-grid">
+                <div class="care-item">
+                    <h4>🧽 Gentle Cleaning</h4>
+                    <p>Clean with eco-friendly soap and water. The recycled material surface resists stains naturally.</p>
+                </div>
+                <div class="care-item">
+                    <h4>🌿 Eco-Friendly Care</h4>
+                    <p>Use biodegradable cleaners only. Avoid harsh chemicals to maintain sustainability standards.</p>
+                </div>
+                <div class="care-item">
+                    <h4>❄️ Winter Storage</h4>
+                    <p>Designed for year-round outdoor use. Stack and store if preferred, but weather protection not required.</p>
+                </div>
+                <div class="care-item">
+                    <h4>♻️ End of Life</h4>
+                    <p>100% recyclable. Contact us for our chair recycling program when replacement is needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-products">
+        <div class="container">
+            <h2 class="section-title">Related Products</h2>
+            <div class="related-grid">
+                <div class="related-card">
+                    <div class="related-image">🪑</div>
+                    <div class="related-info">
+                        <div class="related-name">AquaStack Outdoor Chair</div>
+                        <div class="related-price">From $45</div>
+                    </div>
+                </div>
+                <div class="related-card">
+                    <div class="related-image">🛋️</div>
+                    <div class="related-info">
+                        <div class="related-name">CafeComfort Lounge</div>
+                        <div class="related-price">From $75</div>
+                    </div>
+                </div>
+                <div class="related-card">
+                    <div class="related-image">🪑</div>
+                    <div class="related-info">
+                        <div class="related-name">ModernCurve Accent Chair</div>
+                        <div class="related-price">From $125</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="inquiry-form" id="inquiry">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="section-title">Request a Quote</h2>
+                <form id="inquiryForm">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity Needed</label>
+                        <select id="quantity" name="quantity">
+                            <option value="1-10">1-10 chairs</option>
+                            <option value="11-25">11-25 chairs</option>
+                            <option value="26-50">26-50 chairs</option>
+                            <option value="51-100">51-100 chairs</option>
+                            <option value="100+">100+ chairs</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Preferred Color</label>
+                        <select id="color" name="color">
+                            <option value="ocean-blue">Ocean Blue</option>
+                            <option value="forest-green">Forest Green</option>
+                            <option value="earth-brown">Earth Brown</option>
+                            <option value="stone-gray">Stone Gray</option>
+                            <option value="natural-white">Natural White</option>
+                            <option value="custom">Custom Color Match</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sustainability">Sustainability Priorities</label>
+                        <select id="sustainability" name="sustainability">
+                            <option value="general">General eco-friendly seating</option>
+                            <option value="carbon-neutral">Carbon neutral shipping required</option>
+                            <option value="certification">Need sustainability certifications</option>
+                            <option value="recycling">Interest in end-of-life recycling program</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your sustainability goals, project timeline, delivery requirements, etc."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Request Eco-Quote</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="catalog.html">Product Catalog</a>
+                    <a href="about.html">About Us</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Products</h3>
+                    <a href="catalog.html?category=outdoor">Outdoor Chairs</a>
+                    <a href="catalog.html?category=office">Office Chairs</a>
+                    <a href="catalog.html?category=event">Event Chairs</a>
+                    <a href="catalog.html?category=lounge">Lounge Chairs</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="faq.html">FAQ</a>
+                    <a href="faq.html#warranty">Warranty</a>
+                    <a href="faq.html#returns">Returns</a>
+                    <a href="faq.html#shipping">Shipping</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 1247 Industrial Blvd<br>Springfield, IL 62701</p>
+                    <p>📞 (555) 123-CHAIR</p>
+                    <p>✉️ info@flexiseatspro.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FlexiSeats Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Thumbnail gallery functionality
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                // Remove active class from all thumbnails
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked thumbnail
+                thumb.classList.add('active');
+                
+                // Update main image
+                const newImage = thumb.dataset.image;
+                document.getElementById('mainImage').textContent = newImage;
+            });
+        });
+
+        // Form submission
+        document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            alert('Thank you for your eco-friendly inquiry! We will contact you within 24 hours with a detailed sustainability report and quote.');
+            
+            // In a real application, you would send this data to your server
+            console.log('Eco-form submission:', data);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.use-case-card, .care-item, .related-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>

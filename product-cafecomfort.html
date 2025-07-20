@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CafeComfort Lounge Chair - FlexiSeats Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ecf0f1;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: #f39c12;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb-nav {
+            color: #6c757d;
+        }
+
+        .breadcrumb-nav a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Product Section */
+        .product-section {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Product Gallery */
+        .product-gallery {
+            position: sticky;
+            top: 100px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #d35400, #e67e22);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+            margin-bottom: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .thumbnail {
+            height: 80px;
+            background: linear-gradient(45deg, #d35400, #e67e22);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            border-color: #3498db;
+            transform: scale(1.05);
+        }
+
+        /* Product Info */
+        .product-info {
+            padding: 1rem 0;
+        }
+
+        .product-category-badge {
+            display: inline-block;
+            background: #d35400;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-model {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .price-note {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .product-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .key-features {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .key-features h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #d35400;
+            font-weight: 500;
+        }
+
+        .feature-icon {
+            font-size: 1.2rem;
+        }
+
+        .versatile-highlight {
+            background: linear-gradient(135deg, #d35400, #e67e22);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .versatile-highlight h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #d35400;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #ba4a00;
+            transform: translateY(-2px);
+        }
+
+        /* Specifications */
+        .specifications {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .specs-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .specs-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .specs-table th {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .specs-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .specs-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        /* Use Cases */
+        .use-cases {
+            background: #f8f9fa;
+            padding: 3rem 0;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .use-case-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .use-case-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        /* Related Products */
+        .related-products {
+            background: #f8f9fa;
+            padding: 3rem 0;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .related-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .related-image {
+            height: 150px;
+            background: linear-gradient(45deg, #ecf0f1, #bdc3c7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #7f8c8d;
+        }
+
+        .related-info {
+            padding: 1rem;
+        }
+
+        .related-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-price {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        /* Contact Form */
+        .inquiry-form {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            background: #d35400;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background: #ba4a00;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #f39c12;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #f39c12;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .product-gallery {
+                position: static;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">FlexiSeats Pro</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a> / <a href="catalog.html">Catalog</a> / <a href="catalog.html?category=lounge">Lounge Chairs</a> / CafeComfort Lounge Chair
+            </div>
+        </div>
+    </section>
+
+    <section class="product-section">
+        <div class="container">
+            <div class="product-layout">
+                <div class="product-gallery">
+                    <div class="main-image" id="mainImage">🛋️</div>
+                    <div class="thumbnail-gallery">
+                        <div class="thumbnail active" data-image="🛋️">🛋️</div>
+                        <div class="thumbnail" data-image="📐">📐</div>
+                        <div class="thumbnail" data-image="🏠">🏠</div>
+                        <div class="thumbnail" data-image="☕">☕</div>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category-badge">Lounge/Casual</span>
+                    <h1 class="product-title">CafeComfort Lounge</h1>
+                    <div class="product-model">Model: CC-2024-LG</div>
+                    <div class="product-price">
+                        From $75
+                        <div class="price-note">*Perfect balance of style, comfort, and value</div>
+                    </div>
+
+                    <div class="product-description">
+                        The CafeComfort Lounge chair is the perfect fusion of casual elegance and everyday functionality. Designed for versatile indoor and outdoor use, this chair brings cafe-style charm to any space while delivering reliable comfort for extended use. With its balanced proportions and welcoming design, it seamlessly transitions from professional hospitality settings to relaxed residential environments.
+                    </div>
+
+                    <div class="versatile-highlight">
+                        <h3>🌟 Ultimate Versatility</h3>
+                        <p>The perfect chair that works everywhere - indoors, outdoors, commercial, residential. One chair, endless possibilities.</p>
+                    </div>
+
+                    <div class="key-features">
+                        <h3>Key Features</h3>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">🌍</span>
+                                <span>Indoor/Outdoor</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🎨</span>
+                                <span>Stylish Design</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🛋️</span>
+                                <span>Everyday Comfort</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔄</span>
+                                <span>Multi-Purpose</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">💰</span>
+                                <span>Great Value</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🧽</span>
+                                <span>Easy Care</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="#inquiry" class="btn btn-primary">Request Quote</a>
+                        <a href="tel:+15551232448" class="btn btn-secondary">Call Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="specifications">
+        <div class="container">
+            <h2 class="section-title">Technical Specifications</h2>
+            <div class="specs-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Specification</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Overall Dimensions</td>
+                            <td>W: 23" × D: 23" × H: 31"</td>
+                        </tr>
+                        <tr>
+                            <td>Seat Height</td>
+                            <td>17.5 inches</td>
+                        </tr>
+                        <tr>
+                            <td>Seat Dimensions</td>
+                            <td>W: 18.5" × D: 18"</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>9.2 lbs</td>
+                        </tr>
+                        <tr>
+                            <td>Weight Capacity</td>
+                            <td>275 lbs (tested to 410 lbs)</td>
+                        </tr>
+                        <tr>
+                            <td>Material</td>
+                            <td>UV-stabilized polypropylene with comfort-enhanced design</td>
+                        </tr>
+                        <tr>
+                            <td>Available Colors</td>
+                            <td>Warm Terracotta, Sage Green, Ocean Blue, Cream White, Charcoal Gray</td>
+                        </tr>
+                        <tr>
+                            <td>Stackability</td>
+                            <td>Up to 8 chairs high</td>
+                        </tr>
+                        <tr>
+                            <td>Assembly</td>
+                            <td>Ready to use - no assembly required</td>
+                        </tr>
+                        <tr>
+                            <td>Warranty</td>
+                            <td>2 years residential / 1 year commercial</td>
+                        </tr>
+                        <tr>
+                            <td>Certifications</td>
+                            <td>GREENGUARD Certified, Indoor/Outdoor Safe</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="use-cases">
+        <div class="container">
+            <h2 class="section-title">Perfect For</h2>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">☕</div>
+                    <h3>Cafes & Coffee Shops</h3>
+                    <p>Create inviting seating areas that encourage customers to linger and enjoy their experience in comfort.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏡</div>
+                    <h3>Home Patios & Decks</h3>
+                    <p>Perfect for residential outdoor spaces where style meets everyday functionality for family gatherings.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏢</div>
+                    <h3>Office Break Areas</h3>
+                    <p>Comfortable informal seating for employee lounges, break rooms, and casual meeting spaces.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🍽️</div>
+                    <h3>Casual Dining</h3>
+                    <p>Relaxed restaurant seating that balances comfort with easy maintenance for high-turnover establishments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-products">
+        <div class="container">
+            <h2 class="section-title">Related Products</h2>
+            <div class="related-grid">
+                <div class="related-card">
+                    <div class="related-image">🛋️</div>
+                    <div class="related-info">
+                        <div class="related-name">EcoComfort Patio Chair</div>
+                        <div class="related-price">From $65</div>
+                    </div>
+                </div>
+                <div class="related-card">
+                    <div class="related-image">🪑</div>
+                    <div class="related-info">
+                        <div class="related-name">AquaStack Outdoor Chair</div>
+                        <div class="related-price">From $45</div>
+                    </div>
+                </div>
+                <div class="related-card">
+                    <div class="related-image">🪑</div>
+                    <div class="related-info">
+                        <div class="related-name">ModernCurve Accent Chair</div>
+                        <div class="related-price">From $125</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="inquiry-form" id="inquiry">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="section-title">Request Quote</h2>
+                <form id="inquiryForm">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity Needed</label>
+                        <select id="quantity" name="quantity">
+                            <option value="1-6">1-6 chairs</option>
+                            <option value="7-15">7-15 chairs</option>
+                            <option value="16-30">16-30 chairs</option>
+                            <option value="31-50">31-50 chairs</option>
+                            <option value="50+">50+ chairs</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Color Preference</label>
+                        <select id="color" name="color">
+                            <option value="warm-terracotta">Warm Terracotta</option>
+                            <option value="sage-green">Sage Green</option>
+                            <option value="ocean-blue">Ocean Blue</option>
+                            <option value="cream-white">Cream White</option>
+                            <option value="charcoal-gray">Charcoal Gray</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your space, specific needs, delivery location, etc."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Request Quote</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="catalog.html">Product Catalog</a>
+                    <a href="about.html">About Us</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Products</h3>
+                    <a href="catalog.html?category=outdoor">Outdoor Chairs</a>
+                    <a href="catalog.html?category=office">Office Chairs</a>
+                    <a href="catalog.html?category=event">Event Chairs</a>
+                    <a href="catalog.html?category=lounge">Lounge Chairs</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="faq.html">FAQ</a>
+                    <a href="faq.html#warranty">Warranty</a>
+                    <a href="faq.html#returns">Returns</a>
+                    <a href="faq.html#shipping">Shipping</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 1247 Industrial Blvd<br>Springfield, IL 62701</p>
+                    <p>📞 (555) 123-CHAIR</p>
+                    <p>✉️ info@flexiseatspro.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FlexiSeats Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Thumbnail gallery functionality
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+                const newImage = thumb.dataset.image;
+                document.getElementById('mainImage').textContent = newImage;
+            });
+        });
+
+        // Form submission
+        document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            alert('Thank you for your inquiry! We will contact you within 24 hours with pricing and availability.');
+            console.log('Form submission:', data);
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

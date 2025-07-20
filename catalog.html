@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog - FlexiSeats Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ecf0f1;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255,255,255,0.1);
+            color: #f39c12;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb-nav {
+            color: #6c757d;
+        }
+
+        .breadcrumb-nav a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: white;
+            padding: 3rem 0;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            padding: 2rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        select, input[type="range"] {
+            padding: 0.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .price-display {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        /* Products Grid */
+        .products-section {
+            padding: 3rem 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+
+        .product-image {
+            height: 250px;
+            background: linear-gradient(45deg, #ecf0f1, #bdc3c7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #7f8c8d;
+            position: relative;
+        }
+
+        .product-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #f39c12;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-model {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: #6c757d;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .product-features {
+            margin-bottom: 1rem;
+        }
+
+        .product-features h4 {
+            color: #2c3e50;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .features-list li {
+            background: #e8f4f8;
+            color: #2980b9;
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .product-price-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        .view-details-btn {
+            background: #3498db;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .view-details-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* Filter Results Info */
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .results-count {
+            color: #6c757d;
+        }
+
+        .sort-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #f39c12;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #f39c12;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .filter-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .results-info {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">FlexiSeats Pro</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html" class="active">Catalog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a> / Product Catalog
+            </div>
+        </div>
+    </section>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Product Catalog</h1>
+            <p class="page-subtitle">Explore our complete collection of premium plastic chairs designed for restaurants, offices, events, and homes. Find the perfect seating solution for your space.</p>
+        </div>
+    </section>
+
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="all">All Categories</option>
+                        <option value="outdoor">Outdoor Dining</option>
+                        <option value="office">Office/Conference</option>
+                        <option value="event">Event/Stackable</option>
+                        <option value="lounge">Lounge/Casual</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-range">Price Range: <span class="price-display" id="price-display">$0 - $200</span></label>
+                    <input type="range" id="price-range" min="0" max="200" value="200">
+                </div>
+                <div class="filter-group">
+                    <label for="sort">Sort By</label>
+                    <select id="sort">
+                        <option value="name">Name A-Z</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="category">Category</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section">
+        <div class="container">
+            <div class="results-info">
+                <div class="results-count" id="results-count">Showing 8 products</div>
+            </div>
+            
+            <div class="products-grid" id="products-grid">
+                <!-- Product 1: AquaStack Outdoor Chair -->
+                <div class="product-card" data-category="outdoor" data-price="45">
+                    <div class="product-image">
+                        🪑
+                        <div class="product-category">Outdoor Dining</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">AquaStack Outdoor Chair</h3>
+                        <div class="product-model">Model: AS-2024-OD</div>
+                        <p class="product-description">Weather-resistant dining chair perfect for restaurants and cafes. UV-stabilized material prevents fading.</p>
+                        <div class="product-features">
+                            <h4>Key Features:</h4>
+                            <ul class="features-list">
+                                <li>Stackable</li>
+                                <li>UV Resistant</li>
+                                <li>Easy Clean</li>
+                                <li>Commercial Grade</li>
+                            </ul>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">From $45</div>
+                            <a href="product-aquastack.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: EcoComfort Patio Chair -->
+                <div class="product-card" data-category="outdoor" data-price="65">
+                    <div class="product-image">
+                        🛋️
+                        <div class="product-category">Outdoor Dining</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">EcoComfort Patio Chair</h3>
+                        <div class="product-model">Model: EC-2024-PT</div>
+                        <p class="product-description">Ergonomic outdoor lounge chair with superior comfort. Made from 100% recycled materials.</p>
+                        <div class="product-features">
+                            <h4>Key Features:</h4>
+                            <ul class="features-list">
+                                <li>Ergonomic</li>
+                                <li>Recycled Material</li>
+                                <li>Weather Proof</li>
+                                <li>Comfort Plus</li>
+                            </ul>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">From $65</div>
+                            <a href="product-ecocomfort.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: ProMeet Conference Chair -->
+                <div class="product-card" data-category="office" data-price="85">
+                    <div class="product-image">
+                        💺
+                        <div class="product-category">Office/Conference</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">ProMeet Conference Chair</h3>
+                        <div class="product-model">Model: PM-2024-CF</div>
+                        <p class="product-description">Professional office seating with ergonomic design. Ideal for meeting rooms and conference halls.</p>
+                        <div class="product-features">
+                            <h4>Key Features:</h4>
+                            <ul class="features-list">
+                                <li>Professional</li>
+                                <li>Ergonomic</li>
+                                <li>Stain Resistant</li>
+                                <li>Durable</li>
+                            </ul>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">From $85</div>
+                            <a href="product-promeet.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: FlexiWork Task Chair -->
+                <div class="product-card" data-category="office" data-price="95">
+                    <div class="product-image">
+                        🪑
+                        <div class="product-category">Office/Conference</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">FlexiWork Task Chair</h3>
+                        <div class="product-model">Model: FW-2024-TK</div>
+                        <p class="product-description">Adjustable office chair with lumbar support. Perfect for daily office use and workstations.</p>
+                        <div class="product-features">
+                            <h4>Key Features:</h4>
+                            <ul class="features-list">
+                                <li>Adjustable</li>
+                                <li>Lumbar Support</li>
+                                <li>Daily Use</li>
+                                <li>Ergonomic</li>
+                            </ul>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">From $95</div>
+                            <a href="product-flexiwork.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5: EventStack Basic -->
+                <div class="product-card" data-category="event" data-price="35">
+                    <div class="product-image">
+                        🪑
+                        <div class="product-category">Event/Stackable</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">EventStack Basic</h3>
+                        <div class="product-model">Model: ES-2024-BS</div>
+                        <p class="product-description">Lightweight stackable event chair. Cost-effective solution for large gatherings and temporary seating.</p>
+                        <div class="product-features">
+                            <h4>Key Features:</h4>
+                            <ul class="features-list">
+                                <li>Lightweight</li>
+                                <li>Budget Friendly</li>
+                                <li>High Stack</li>
+                                <li>Easy Setup</li>
+                            </ul>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">From $35</div>
+                            <a href="product-eventstack-basic.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6: EventStack Premium -->
+                <div class="product-card" data-category="event" data-price="55">
+                    <div class="product-image">
+                        💺
+                        <div class="product-category">Event/Stackable</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">EventStack Premium</h3>
+                        <div class="product-model">Model: ES-2024-PR</div>
+                        <p class="product-description">Heavy-duty stackable chair for events and banquets. Superior comfort for long-duration seating.</p>
+                        <div class="product-features">
+                            <h4>Key Features:</h4>
+                            <ul class="features-list">
+                                <li>Heavy Duty</li>
+                                <li>Extra Comfort</li>
+                                <li>Stackable</li>
+                                <li>Premium Build</li>
+                            </ul>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">From $55</div>
+                            <a href="product-eventstack-premium.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7: CafeComfort Lounge -->
+                <div class="product-card" data-category="lounge" data-price="75">
+                    <div class="product-image">
+                        🛋️
+                        <div class="product-category">Lounge/Casual</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">CafeComfort Lounge</h3>
+                        <div class="product-model">Model: CC-2024-LG</div>
+                        <p class="product-description">Casual indoor/outdoor chair perfect for cafes and lounges. Combines style with everyday functionality.</p>
+                        <div class="product-features">
+                            <h4>Key Features:</h4>
+                            <ul class="features-list">
+                                <li>Versatile</li>
+                                <li>Stylish</li>
+                                <li>Indoor/Outdoor</li>
+                                <li>Comfortable</li>
+                            </ul>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">From $75</div>
+                            <a href="product-cafecomfort.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8: ModernCurve Accent Chair -->
+                <div class="product-card" data-category="lounge" data-price="125">
+                    <div class="product-image">
+                        🪑
+                        <div class="product-category">Lounge/Casual</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">ModernCurve Accent Chair</h3>
+                        <div class="product-model">Model: MC-2024-AC</div>
+                        <p class="product-description">Designer residential chair with contemporary styling. Perfect for modern homes and boutique spaces.</p>
+                        <div class="product-features">
+                            <h4>Key Features:</h4>
+                            <ul class="features-list">
+                                <li>Designer</li>
+                                <li>Contemporary</li>
+                                <li>Premium Finish</li>
+                                <li>Statement Piece</li>
+                            </ul>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">From $125</div>
+                            <a href="product-moderncurve.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="catalog.html">Product Catalog</a>
+                    <a href="about.html">About Us</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Products</h3>
+                    <a href="#outdoor">Outdoor Chairs</a>
+                    <a href="#office">Office Chairs</a>
+                    <a href="#event">Event Chairs</a>
+                    <a href="#lounge">Lounge Chairs</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="faq.html">FAQ</a>
+                    <a href="#returns">Returns</a>
+                    <a href="#shipping">Shipping</a>
+                    <a href="#bulk">Bulk Orders</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 1247 Industrial Blvd<br>Springfield, IL 62701</p>
+                    <p>📞 (555) 123-CHAIR</p>
+                    <p>✉️ info@flexiseatspro.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FlexiSeats Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product filtering and sorting functionality
+        const products = document.querySelectorAll('.product-card');
+        const categoryFilter = document.getElementById('category');
+        const priceRange = document.getElementById('price-range');
+        const priceDisplay = document.getElementById('price-display');
+        const sortSelect = document.getElementById('sort');
+        const resultsCount = document.getElementById('results-count');
+        const productsGrid = document.getElementById('products-grid');
+
+        // Update price display
+        priceRange.addEventListener('input', function() {
+            priceDisplay.textContent = `$0 - ${this.value}`;
+            filterProducts();
+        });
+
+        // Filter products
+        function filterProducts() {
+            const selectedCategory = categoryFilter.value;
+            const maxPrice = parseInt(priceRange.value);
+            let visibleCount = 0;
+
+            products.forEach(product => {
+                const productCategory = product.dataset.category;
+                const productPrice = parseInt(product.dataset.price);
+                
+                const categoryMatch = selectedCategory === 'all' || productCategory === selectedCategory;
+                const priceMatch = productPrice <= maxPrice;
+                
+                if (categoryMatch && priceMatch) {
+                    product.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            resultsCount.textContent = `Showing ${visibleCount} products`;
+        }
+
+        // Sort products
+        function sortProducts() {
+            const sortValue = sortSelect.value;
+            const productsArray = Array.from(products);
+            
+            productsArray.sort((a, b) => {
+                switch(sortValue) {
+                    case 'name':
+                        return a.querySelector('.product-name').textContent.localeCompare(
+                            b.querySelector('.product-name').textContent
+                        );
+                    case 'price-low':
+                        return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                    case 'price-high':
+                        return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                    case 'category':
+                        return a.dataset.category.localeCompare(b.dataset.category);
+                    default:
+                        return 0;
+                }
+            });
+
+            // Re-append sorted elements
+            productsArray.forEach(product => {
+                productsGrid.appendChild(product);
+            });
+        }
+
+        // Event listeners
+        categoryFilter.addEventListener('change', filterProducts);
+        sortSelect.addEventListener('change', sortProducts);
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe product cards for animation
+        products.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

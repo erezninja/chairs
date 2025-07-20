@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventStack Basic Chair - FlexiSeats Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ecf0f1;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: #f39c12;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb-nav {
+            color: #6c757d;
+        }
+
+        .breadcrumb-nav a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Product Section */
+        .product-section {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Product Gallery */
+        .product-gallery {
+            position: sticky;
+            top: 100px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #7f8c8d, #95a5a6);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+            margin-bottom: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .thumbnail {
+            height: 80px;
+            background: linear-gradient(45deg, #7f8c8d, #95a5a6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            border-color: #3498db;
+            transform: scale(1.05);
+        }
+
+        /* Product Info */
+        .product-info {
+            padding: 1rem 0;
+        }
+
+        .product-category-badge {
+            display: inline-block;
+            background: #7f8c8d;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-model {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .price-note {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .product-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .key-features {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .key-features h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .feature-icon {
+            font-size: 1.2rem;
+        }
+
+        .value-highlight {
+            background: linear-gradient(135deg, #7f8c8d, #95a5a6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .value-highlight h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #7f8c8d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #6c7b7d;
+            transform: translateY(-2px);
+        }
+
+        /* Specifications */
+        .specifications {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .specs-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .specs-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .specs-table th {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .specs-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .specs-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        /* Use Cases */
+        .use-cases {
+            background: #f8f9fa;
+            padding: 3rem 0;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .use-case-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .use-case-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        /* Care Instructions */
+        .care-instructions {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .care-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .care-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .care-item h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        /* Related Products */
+        .related-products {
+            background: #f8f9fa;
+            padding: 3rem 0;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .related-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .related-image {
+            height: 150px;
+            background: linear-gradient(45deg, #ecf0f1, #bdc3c7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #7f8c8d;
+        }
+
+        .related-info {
+            padding: 1rem;
+        }
+
+        .related-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-price {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        /* Contact Form */
+        .inquiry-form {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            background: #7f8c8d;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background: #6c7b7d;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #f39c12;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #f39c12;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .product-gallery {
+                position: static;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">FlexiSeats Pro</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a> / <a href="catalog.html">Catalog</a> / <a href="catalog.html?category=event">Event Chairs</a> / EventStack Basic Chair
+            </div>
+        </div>
+    </section>
+
+    <section class="product-section">
+        <div class="container">
+            <div class="product-layout">
+                <div class="product-gallery">
+                    <div class="main-image" id="mainImage">🪑</div>
+                    <div class="thumbnail-gallery">
+                        <div class="thumbnail active" data-image="🪑">🪑</div>
+                        <div class="thumbnail" data-image="📐">📐</div>
+                        <div class="thumbnail" data-image="💰">💰</div>
+                        <div class="thumbnail" data-image="📚">📚</div>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category-badge">Event/Stackable</span>
+                    <h1 class="product-title">EventStack Basic</h1>
+                    <div class="product-model">Model: ES-2024-BS</div>
+                    <div class="product-price">
+                        From $35
+                        <div class="price-note">*Unbeatable value for large quantity orders</div>
+                    </div>
+
+                    <div class="product-description">
+                        The EventStack Basic chair delivers essential seating functionality at an unbeatable price point, making it the perfect choice for large-scale events, temporary installations, and budget-conscious gatherings. While maintaining our commitment to quality and durability, this streamlined design focuses on the core features that matter most: reliable construction, efficient stackability, and easy maintenance. Ideal for organizers who need dependable seating without compromising their budget.
+                    </div>
+
+                    <div class="value-highlight">
+                        <h3>💰 Exceptional Value</h3>
+                        <p>The most cost-effective solution for large events without sacrificing quality or reliability. Perfect for budget-conscious organizers.</p>
+                    </div>
+
+                    <div class="key-features">
+                        <h3>Key Features</h3>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">💰</span>
+                                <span>Budget Friendly</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🪶</span>
+                                <span>Lightweight</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📚</span>
+                                <span>High Stack Count</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">⚡</span>
+                                <span>Quick Setup</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">💪</span>
+                                <span>Reliable Build</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🧽</span>
+                                <span>Easy Clean</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="#inquiry" class="btn btn-primary">Request Bulk Quote</a>
+                        <a href="tel:+15551232448" class="btn btn-secondary">Call Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="specifications">
+        <div class="container">
+            <h2 class="section-title">Technical Specifications</h2>
+            <div class="specs-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Specification</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Overall Dimensions</td>
+                            <td>W: 21" × D: 20" × H: 32"</td>
+                        </tr>
+                        <tr>
+                            <td>Seat Height</td>
+                            <td>17.5 inches</td>
+                        </tr>
+                        <tr>
+                            <td>Seat Dimensions</td>
+                            <td>W: 17" × D: 16"</td>
+                        </tr>
+                        <tr>
+                            <td>Backrest Height</td>
+                            <td>14.5 inches</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>7.2 lbs</td>
+                        </tr>
+                        <tr>
+                            <td>Weight Capacity</td>
+                            <td>250 lbs (tested to 375 lbs)</td>
+                        </tr>
+                        <tr>
+                            <td>Material</td>
+                            <td>High-density polypropylene with reinforced stress points</td>
+                        </tr>
+                        <tr>
+                            <td>Available Colors</td>
+                            <td>Basic Black, Neutral Gray, Classic White, Navy Blue</td>
+                        </tr>
+                        <tr>
+                            <td>Stackability</td>
+                            <td>Up to 25 chairs high (industry leading)</td>
+                        </tr>
+                        <tr>
+                            <td>Assembly</td>
+                            <td>Ready to use - no assembly required</td>
+                        </tr>
+                        <tr>
+                            <td>Warranty</td>
+                            <td>1 year manufacturing defects warranty</td>
+                        </tr>
+                        <tr>
+                            <td>Certifications</td>
+                            <td>GREENGUARD Certified, Fire Retardant Available</td>
+                        </tr>
+                        <tr>
+                            <td>Bulk Packaging</td>
+                            <td>Ships in stacks of 25 for efficient delivery</td>
+                        </tr>
+                        <tr>
+                            <td>Setup Time</td>
+                            <td>100 chairs can be unstacked and arranged in under 15 minutes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="use-cases">
+        <div class="container">
+            <h2 class="section-title">Perfect For</h2>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">🎪</div>
+                    <h3>Large Events & Festivals</h3>
+                    <p>Cost-effective seating for outdoor festivals, fairs, and community events requiring hundreds of chairs.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏫</div>
+                    <h3>Educational Institutions</h3>
+                    <p>Budget-friendly seating for school events, graduations, and temporary classroom expansions.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">⛪</div>
+                    <h3>Religious Gatherings</h3>
+                    <p>Affordable seating for church events, revival meetings, and community outreach programs.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏢</div>
+                    <h3>Corporate Training</h3>
+                    <p>Temporary seating for training sessions, seminars, and large corporate meetings on a budget.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🎭</div>
+                    <h3>Community Centers</h3>
+                    <p>Versatile seating for multiple events and activities where chairs need frequent reconfiguration.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🚚</div>
+                    <h3>Rental Companies</h3>
+                    <p>Lightweight, stackable inventory that maximizes transport efficiency and storage capacity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="care-instructions">
+        <div class="container">
+            <h2 class="section-title">Care & Maintenance</h2>
+            <div class="care-grid">
+                <div class="care-item">
+                    <h4>🧽 Quick Cleaning</h4>
+                    <p>Simple soap and water cleaning between events. Stain-resistant surface requires minimal maintenance effort.</p>
+                </div>
+                <div class="care-item">
+                    <h4>📚 Efficient Stacking</h4>
+                    <p>Stack up to 25 high safely. Lightweight design makes moving and arranging large quantities manageable.</p>
+                </div>
+                <div class="care-item">
+                    <h4>🚚 Transport Tips</h4>
+                    <p>Designed for frequent loading and unloading. Smooth edges prevent scratching during transport.</p>
+                </div>
+                <div class="care-item">
+                    <h4>💾 Storage</h4>
+                    <p>Compact stacking saves valuable storage space. Weather-resistant for outdoor storage when needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-products">
+        <div class="container">
+            <h2 class="section-title">Related Products</h2>
+            <div class="related-grid">
+                <div class="related-card">
+                    <div class="related-image">💺</div>
+                    <div class="related-info">
+                        <div class="related-name">EventStack Premium</div>
+                        <div class="related-price">From $55</div>
+                    </div>
+                </div>
+                <div class="related-card">
+                    <div class="related-image">🪑</div>
+                    <div class="related-info">
+                        <div class="related-name">AquaStack Outdoor Chair</div>
+                        <div class="related-price">From $45</div>
+                    </div>
+                </div>
+                <div class="related-card">
+                    <div class="related-image">💺</div>
+                    <div class="related-info">
+                        <div class="related-name">ProMeet Conference Chair</div>
+                        <div class="related-price">From $85</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="inquiry-form" id="inquiry">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="section-title">Request Bulk Quote</h2>
+                <form id="inquiryForm">
+                    <div class="form-group">
+                        <label for="name">Contact Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="organization">Organization/Event Company</label>
+                        <input type="text" id="organization" name="organization" placeholder="Event planning company, school, church, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventType">Event Type</label>
+                        <select id="eventType" name="eventType">
+                            <option value="festival">Festival/Fair</option>
+                            <option value="graduation">Graduation Ceremony</option>
+                            <option value="corporate">Corporate Event</option>
+                            <option value="religious">Religious Gathering</option>
+                            <option value="community">Community Event</option>
+                            <option value="rental">Rental Inventory</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity Needed</label>
+                        <select id="quantity" name="quantity">
+                            <option value="100-250">100-250 chairs</option>
+                            <option value="251-500">251-500 chairs</option>
+                            <option value="501-1000">501-1000 chairs</option>
+                            <option value="1001-2500">1001-2500 chairs</option>
+                            <option value="2500+">2500+ chairs</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Color Preference</label>
+                        <select id="color" name="color">
+                            <option value="basic-black">Basic Black</option>
+                            <option value="neutral-gray">Neutral Gray</option>
+                            <option value="classic-white">Classic White</option>
+                            <option value="navy-blue">Navy Blue</option>
+                            <option value="mixed">Mixed Colors</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="purchaseType">Purchase Type</label>
+                        <select id="purchaseType" name="purchaseType">
+                            <option value="purchase">One-time Purchase</option>
+                            <option value="rental">Rental Inquiry</option>
+                            <option value="lease">Long-term Lease</option>
+                            <option value="rental-purchase">Rental to Purchase</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget Range</label>
+                        <select id="budget" name="budget">
+                            <option value="under-5k">Under $5,000</option>
+                            <option value="5k-10k">$5,000 - $10,000</option>
+                            <option value="10k-25k">$10,000 - $25,000</option>
+                            <option value="25k-50k">$25,000 - $50,000</option>
+                            <option value="50k+">$50,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeline">When do you need them?</label>
+                        <select id="timeline" name="timeline">
+                            <option value="rush">Rush Order (1-2 weeks)</option>
+                            <option value="standard">Standard (3-4 weeks)</option>
+                            <option value="advance">Advance Planning (2+ months)</option>
+                            <option value="recurring">Recurring Events</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="services">Additional Services</label>
+                        <select id="services" name="services">
+                            <option value="delivery-only">Delivery Only</option>
+                            <option value="setup">Setup Service</option>
+                            <option value="full-service">Full Setup & Breakdown</option>
+                            <option value="storage">Storage Services</option>
+                            <option value="consultation">Event Planning Consultation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Event Details</label>
+                        <textarea id="message" name="message" placeholder="Describe your event, venue size, delivery location, setup requirements, budget constraints, special needs, etc."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Request Bulk Quote</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="catalog.html">Product Catalog</a>
+                    <a href="about.html">About Us</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Products</h3>
+                    <a href="catalog.html?category=outdoor">Outdoor Chairs</a>
+                    <a href="catalog.html?category=office">Office Chairs</a>
+                    <a href="catalog.html?category=event">Event Chairs</a>
+                    <a href="catalog.html?category=lounge">Lounge Chairs</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="faq.html">FAQ</a>
+                    <a href="faq.html#warranty">Warranty</a>
+                    <a href="faq.html#returns">Returns</a>
+                    <a href="faq.html#shipping">Shipping</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 1247 Industrial Blvd<br>Springfield, IL 62701</p>
+                    <p>📞 (555) 123-CHAIR</p>
+                    <p>✉️ info@flexiseatspro.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FlexiSeats Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Thumbnail gallery functionality
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                // Remove active class from all thumbnails
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked thumbnail
+                thumb.classList.add('active');
+                
+                // Update main image
+                const newImage = thumb.dataset.image;
+                document.getElementById('mainImage').textContent = newImage;
+            });
+        });
+
+        // Form submission
+        document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            alert('Thank you for your bulk inquiry! Our event specialists will contact you within 24 hours with volume pricing and logistics planning assistance.');
+            
+            // In a real application, you would send this data to your server
+            console.log('EventStack Basic form submission:', data);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.use-case-card, .care-item, .related-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
